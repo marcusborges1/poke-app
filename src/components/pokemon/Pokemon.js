@@ -23,8 +23,11 @@ export default class Pokemon extends Component {
       <React.Fragment>
         { evolutions.map(evolution => {
           return (
-            <div>
-              <img key={evolution.id} src={this.getSpriteUrl(evolution.sprite_url)}/>
+            <div key={evolution.id}>
+              <img 
+                src={this.getSpriteUrl(evolution.sprite_url)}
+                alt={`${evolution.name} sprite`}
+              />
               <span>{evolution.name}</span>
               { this.renderEvolutions(evolution.evolves_to) }
             </div>
@@ -37,7 +40,10 @@ export default class Pokemon extends Component {
   renderEvolutionChain() {
     return (
       <div>
-        <img src={this.getSpriteUrl()}/> 
+        <img 
+          src={this.getSpriteUrl()}
+          alt={`${this.state.name} sprite`}
+        /> 
         <span>{this.state.name}</span>
         {this.renderEvolutions(this.state.evolvesTo)}
       </div>
@@ -61,6 +67,17 @@ export default class Pokemon extends Component {
         ))}
       </React.Fragment>
     );
+  }
+
+  removePokemon = async () => {
+    const url = `http://localhost:4000/v1/pokemon/${this.state.id}`;
+    try {
+      await axios.delete(url);
+      alert(`${this.name} deleted sucessfully.`);
+      this.props.history.push('/pokemon');      
+    } catch (e) {
+      alert('Error! ' + e.message);
+    }
   }
 
   async componentDidMount() {
@@ -106,12 +123,14 @@ export default class Pokemon extends Component {
               <img 
                 src={this.getSpriteUrl()}
                 className="card-img-top rounded mx-auto mt-2"
+                alt={`${this.state.name} sprite`}
               />
             </div>
             <div className="col-md-9">
               <h4 className="mx-auto">{this.state.name}</h4>
             </div>
           </div>
+          <button onClick={this.removePokemon}>Delete Pokemon</button>
         </div>
         <hr />
         <div className="card-body">
