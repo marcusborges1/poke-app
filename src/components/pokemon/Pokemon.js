@@ -55,14 +55,14 @@ export default class Pokemon extends Component {
       <React.Fragment>
         { this.state.types.map(type => (
           <span 
-            key={type} 
+            key={type.id} 
             className="badge badge-primary badge-pill mr-1"
             style={{ 
-              backgroundColor: `#${TYPE_COLORS[type]}`,
+              backgroundColor: `#${TYPE_COLORS[type.name]}`,
               color: 'white', 
             }}
           >
-            {type}
+            {type.name}
           </span>
         ))}
       </React.Fragment>
@@ -130,6 +130,10 @@ export default class Pokemon extends Component {
               <h4 className="mx-auto">{this.state.name}</h4>
             </div>
           </div>
+          <button 
+            onClick={() => this.props.history.push(`/pokemon/${this.state.id}/edit`)}>
+            Edit Pokemon
+          </button>
           <button onClick={this.removePokemon}>Delete Pokemon</button>
         </div>
         <hr />
