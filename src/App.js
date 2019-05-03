@@ -18,9 +18,10 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/"><Redirect to="/pokemon"/></Route>
-            <Route exact path="/pokemon" component={Dashboard}></Route>
-            <Route exact path="/pokemon/new" component={PokemonForm}></Route>
-            <Route exact path="/pokemon/:id" component={Pokemon}></Route>
+            <Route exact path="/pokemon" component={Dashboard} key="list-pokemon"></Route>
+            <Route exact path="/pokemon/new" component={PokemonForm} key="create-pokemon"></Route>
+            <Route exact path="/pokemon/:id" component={Pokemon} key="show-pokemon"></Route>
+            <Route exact path="/pokemon/:id/edit" component={PokemonForm} key="edit-pokemon"></Route>
           </Switch>
         </div>
       </div>
