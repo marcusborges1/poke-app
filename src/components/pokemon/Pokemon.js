@@ -116,7 +116,7 @@ export default class Pokemon extends Component {
         <hr />
         <div className="card-body">
           <div className="card-title text-center">Evolutions</div>
-          <div class="d-flex justify-content-center">
+          <div className="d-flex justify-content-center">
             { this.renderEvolutionChain() }
           </div>
         </div>
