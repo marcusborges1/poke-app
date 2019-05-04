@@ -11,14 +11,14 @@ export default class Pokemon extends Component {
     evolvesTo: []
   };
 
-  getSpriteUrl(path = '') {
+  getSpriteUrl = (path = '') => {
     if (path) {
       return `http://localhost:4000${path}`;
     }
     return `http://localhost:4000${this.state.spriteUrl}`;
   }
 
-  renderEvolutions(evolutions) {
+  renderEvolutions = (evolutions) => {
     return (
       <React.Fragment>
         { evolutions.map(evolution => {
@@ -37,7 +37,7 @@ export default class Pokemon extends Component {
     );
   }
 
-  renderEvolutionChain() {
+  renderEvolutionChain = () => {
     return (
       <div>
         <img 
@@ -50,7 +50,7 @@ export default class Pokemon extends Component {
     );
   }
 
-  renderTypes() {
+  renderTypes = () => {
     return(
       <React.Fragment>
         { this.state.types.map(type => (
@@ -73,14 +73,14 @@ export default class Pokemon extends Component {
     const url = `http://localhost:4000/v1/pokemon/${this.state.id}`;
     try {
       await axios.delete(url);
-      alert(`${this.name} deleted sucessfully.`);
+      alert('Pokemon deleted sucessfully.');
       this.props.history.push('/pokemon');      
     } catch (e) {
       alert('Error! ' + e.message);
     }
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const { id } = this.props.match.params;
     
     const pokemonUrl = `http://localhost:4000/v1/pokemon/${id}`;
@@ -101,7 +101,7 @@ export default class Pokemon extends Component {
     });
   }
   
-  render() {
+  render = () => {
     return (
     <div className="col">
       <div className="card">
